@@ -1,0 +1,15 @@
+[
+    {
+      "name": "Spicy Grilled Chicken",
+      "description": "Grilled chicken with peri-peri sauce and herbs",
+      "price": "$12.99",
+      "category": "Main Course"
+    },
+    {
+      "name": "Creamy Mushroom Pasta",
+      "description": "Pasta tossed in creamy garlic mushroom sauce",
+      "price": "$10.50",
+      "category": "Pasta"
+    }
+  ]
+  

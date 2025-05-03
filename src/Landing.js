@@ -45,7 +45,7 @@ const LandingPage = () => {
           setTimeout(() => {
             setShowMenu(true)
             viewMenuRef.current?.scrollIntoView({ behavior: "smooth"})
-          }); // trigger animation
+          },10); // trigger animation
         } else {
           setShowMenu(false); // start hide animation
           setTimeout(() => setShouldRenderMenu(false), 500); // unmount after animation duration
@@ -83,7 +83,10 @@ const scrollToSection = (path) => {
 
     return (
         <div id="webcrumbs">
-            <Navbar scrollToSection={scrollToSection}/>
+           <div className="fixed top-0 left-0 w-full z-10">
+  <Navbar scrollToSection={scrollToSection} />
+</div>
+
             <HeroSection
                 ref={homeRef}
                 title="Savor the Essence of Italy"
@@ -94,6 +97,7 @@ const scrollToSection = (path) => {
                 handleToggleReservation={handleToggleReservation}
                 imageSrc="https://cdn.usegalileo.ai/sdxl10/425b6507-ae14-4830-9365-30b2e61c1d5c.png"
                 altText="Italian restaurant front"
+                className="pt-16"
             />
            <div ref={specialitiesRef}>
            <SpecialtiesSection handleShowMenu={handleShowMenu}/>
@@ -111,14 +115,11 @@ const scrollToSection = (path) => {
 
             <PopularDishesSection />
             <Testimonials title={"What Our Guests Say"}/>
-            <div ref={galleryRef}>
-                <Gallery title="Our Gallery" />
-            </div>
-            
+
             <div ref={reservationRef}>
             <Reserve title={"Reserve Your Table"} subtitle={"Book your table now and indulge in a memorable dining experience!"} placeholder={"Enter Details Here..."} handleToggleReservation={handleToggleReservation}/>
             </div>
-           
+            
             {shouldRenderReservation && (
                     <div
                         ref={reservationRef}
@@ -129,9 +130,14 @@ const scrollToSection = (path) => {
                         <ReservationFormSection />
                     </div>
                 )}
-            <div ref={contactRef}>
-            <ContactFormSection/>
+
+            <div ref={galleryRef}>
+                <Gallery title="Our Gallery" />
             </div>
+          
+           <div ref={contactRef} className="flex justify-center items-center w-full">
+              <ContactFormSection />
+          </div>
         </div>
     );
 };
@@ -139,67 +145,3 @@ const scrollToSection = (path) => {
 
 export default LandingPage;
 
-// import React, { useEffect, useRef, useState } from "react";
-// import { useLocation } from "react-router-dom";
-// import HeroSection from "./components/HeroSection";
-// import SpecialtiesSection from "./components/SpecialtiesSection";
-// import ContactFormSection from "./components/ContactFormSection";
-// import PopularDishesSection from "./components/PopularDishes";
-// import Navbar from "./components/Navbar";
-// import Testimonials from "./components/Testimonial";
-// import Gallery from "./components/Gallery";
-// import Reserve from "./components/ReserveSec";
-// import ViewMenuTable from "./ViewMenuTable";
-// import ReservationFormSection from "./ReservationForm";
-
-// export const LandingPage = () => {
-//   const location = useLocation();
-
-//   const menuRef = useRef(null);
-//   const contactRef = useRef(null);
-//   const aboutRef = useRef(null);
-
-//   // 🔽 Scroll when path changes
-//   useEffect(() => {
-//     if (location.pathname === '/menu') {
-//       menuRef.current?.scrollIntoView({ behavior: 'smooth' });
-//     } else if (location.pathname === '/contact') {
-//       contactRef.current?.scrollIntoView({ behavior: 'smooth' });
-//     } else if (location.pathname === '/about') {
-//       aboutRef.current?.scrollIntoView({ behavior: 'smooth' });
-//     } else if (location.pathname === '/' || location.pathname === '/home') {
-//       window.scrollTo({ top: 0, behavior: 'smooth' });
-//     }
-//   }, [location.pathname]);
-
-//   return (
-//     <div id="webcrumbs">
-//       <Navbar />
-//       <HeroSection
-//         title="Savor the Essence of Italy"
-//         subtitle="Discover handcrafted pastas, wood-fired pizzas, and authentic dishes made to transport you to sunny, vibrant Italy."
-//         buttonText="Book a Table"
-//         ViewButton="View Menu"
-//         imageSrc="https://cdn.usegalileo.ai/sdxl10/425b6507-ae14-4830-9365-30b2e61c1d5c.png"
-//         altText="Italian restaurant front"
-//       />
-
-//       <div ref={aboutRef}>
-//         <SpecialtiesSection />
-//       </div>
-
-//       <div ref={menuRef}>
-//         <ViewMenuTable />
-//       </div>
-
-//       <PopularDishesSection />
-//       <Testimonials title={"What Our Guests Say"} />
-//       <Gallery title="Our Gallery" />
-//       <Reserve title={"Reserve Your Table"} subtitle={"Book your table now!"} placeholder={"Enter Details Here..."} />
-      
-//       <div ref={contactRef}>
-//         <ContactFormSection />
-//       </div>
-//     </div>
-//   );
-// };

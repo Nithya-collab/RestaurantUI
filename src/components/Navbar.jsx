@@ -197,7 +197,7 @@ const Navbar = ({ scrollToSection }) => {
           opacity: 0.5,
         }}
       ></div>
-      <div className="absolute inset-0 bg-black bg-opacity-30 z-0"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-80 z-0"></div>
 
       <div className="container mx-auto flex justify-between items-center relative z-10">
         <div className="text-white text-2xl font-title">
